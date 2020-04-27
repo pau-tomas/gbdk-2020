@@ -16,12 +16,14 @@ void print_counter(void)
 
 typedef void (*FUNPTR)(void);
 
+#define __inc_start ((void *)inc)
+#define __inc_end ((void *)print_counter)
+
 void main(void)
 {
-  extern UBYTE __inc_end, __inc_start;
   /* Declare extern functions */
-  void inc_ram() NONBANKED;
-  void inc_hiram() NONBANKED;
+  extern void inc_ram();
+  extern void inc_hiram();
   /* Declare pointer-to-function variables */
   /* With sdcc 2.3.1, you cannot cast a constant to a function pointer
      without going through a typedef.
